@@ -1,4 +1,8 @@
-const { projects, clients } = require('./../sampleData')
+const { projects, clients } = require('./../sampleData');
+
+// Mongoose models
+const Project = require('./../models/Project');
+const Client = require('./../models/Client');
 
 const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLSchema, GraphQLList } = require('graphql');
 
@@ -37,7 +41,7 @@ const RootQuery = new GraphQLObjectType({
         projects: {
             type: new GraphQLList(ProjectType),
             resolve(parent, args) {
-                return projects;
+                return Project.find();
             }
         },
         project: {
